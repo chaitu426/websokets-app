@@ -18,10 +18,10 @@ matchRouter.get("/", async (req, res) => {
     const limit = Math.min(parsed.data.limit ?? 50, MAX_LIMIT);
     
     try{
-        const matches = await db.select().from(matches).orderBy(desc(matches.createdAt)).limit(limit);
+        const matchesData = await db.select().from(matches).orderBy(desc(matches.createdAt)).limit(limit);
         return res.status(200).json({
             message: "Matches fetched successfully",
-            matches
+            matchesData
         });
     }catch(err){
         res.status(500).json({
@@ -32,7 +32,7 @@ matchRouter.get("/", async (req, res) => {
 
 matchRouter.post("/", async (req, res) => {
     const parsed = createMatchSchema.safeParse(req.body);
-    if (!paresd.success) {
+    if (!parsed.success) {
         return res.status(400).json({
             error: JSON.stringify(parsed.error)
 
