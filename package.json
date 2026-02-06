@@ -1,17 +1,28 @@
 {
   "name": "websokets-prac",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/server.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "migrate": "drizzle-kit migrate",
+    "generate": "drizzle-kit generate"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@neondatabase/serverless": "^1.0.2",
+    "dotenv": "^17.2.4",
+    "drizzle-orm": "^0.45.1",
     "express": "^5.2.1",
     "ws": "^8.19.0"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.31.8",
+    "tsx": "^4.21.0"
   }
 }
