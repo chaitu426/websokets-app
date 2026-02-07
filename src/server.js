@@ -1,5 +1,6 @@
 import express from 'express';
 import matchRouter from './routes/matches.js';
+import commentaryRouter from './routes/commentry.js';
 import http from 'http';
 import { setupWebSocketServer } from './ws/server.js';
 import 'dotenv/config';
@@ -22,9 +23,11 @@ app.get('/', (req, res) => {
 
 
 app.use("/matches", matchRouter);
+app.use("/:matchId/commentary", commentaryRouter);
 
-const {broadcastMatchCreated} = setupWebSocketServer(server);
+const { broadcastMatchCreated, broadcastCommentary } = setupWebSocketServer(server);
 app.locals.broadcastMatchCreated = broadcastMatchCreated;
+app.locals.broadcastCommentary = broadcastCommentary;
 
 server.listen(PORT, HOST, () => {
     const add = HOST === '0.0.0.0' ? `http://localhost:${PORT}` : `http://${HOST}:${PORT}`;
