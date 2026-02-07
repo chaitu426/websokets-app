@@ -1,4 +1,4 @@
-import { MATCH_STATUS } from "../validation/matchs";
+import { MATCH_STATUS } from "../validation/matchs.js";
 
 export const getMatchStatus = (startTime, endTime, now = new Date()) => {
     const start = new Date(startTime);
